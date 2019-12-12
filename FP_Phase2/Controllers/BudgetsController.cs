@@ -15,25 +15,37 @@ namespace FP_Phase2.Controllers
     public class BudgetsController : BaseController
     {
         /// <summary>
-        /// 
+        /// Gets details for all budgets in a specific household
         /// </summary>
-        /// <param name="householdId"></param>
+        /// <param name="householdId">Household Id</param>
         /// <returns></returns>
-        [Route("HouseholdBudgets")]
+        [Route("GetBudgetsByHousehold")]
         public async Task<List<Budget>> GetBudgetsByHousehold(int householdId)
         {
             return await db.GetBudgetsByHousehold(householdId);
         }
 
         /// <summary>
-        /// 
+        /// Gets details for a specific budget
         /// </summary>
-        /// <param name="householdId"></param>
+        /// <param name="id">Budget Id</param>
         /// <returns></returns>
-        [Route("Budgets")]
-        public async Task<List<Budget>> GetBudgets(int householdId)
+        [Route("GetBudgetDetails")]
+        public async Task<List<Budget>> GetBudgetDetails(int id)
         {
-            return await db.GetBudgets(householdId);
+            return await db.GetBudgetDetails(id);
         }
+
+        /// <summary>
+        /// Gets details for all budgets
+        /// </summary>
+        /// <returns></returns>
+        [Route("GetAllBudgets")]
+        public async Task<List<Budget>> GetAllBudgets()
+        {
+            return await db.GetAllBudgets();
+        }
+
+
     }
 }

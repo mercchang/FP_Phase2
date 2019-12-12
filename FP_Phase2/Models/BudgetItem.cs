@@ -18,7 +18,7 @@ namespace FP_Phase2.Models
 
         //public virtual ICollection<Transaction> Transactions { get; set; }
 
-        //public BankAccount()
+        //public BudgetItem()
         //{
         //    Transactions = new HashSet<Transaction>();
         //}

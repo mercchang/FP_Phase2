@@ -1,7 +1,9 @@
-﻿using FP_Phase2.Models;
+﻿using FP_Phase2.Enums;
+using FP_Phase2.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,7 +23,7 @@ namespace FP_Phase2.Controllers
         /// </summary>
         /// <param name="householdId"></param>
         /// <returns></returns>
-        [Route("BankAccounts")]
+        [Route("GetBankAccounts")]
         public async Task<List<BankAccount>> GetBankAccounts(int householdId)
         {
             return await db.GetBankAccounts(householdId);
@@ -42,10 +44,10 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="bankAccountId"></param>
-        /// <param name="householdId"></param>
+        /// <param name="bankAccountId">Bank Account Id</param>
+        /// <param name="householdId">Household Id</param>
         /// <returns></returns>
-        [Route("BankAccountDetails")]
+        [Route("GetBankAccountDetails")]
         public async Task<BankAccount> GetBankAccountDetails(int bankAccountId, int householdId)
         {
             return await db.GetBankAccountDetails(bankAccountId, householdId);
@@ -63,5 +65,20 @@ namespace FP_Phase2.Controllers
             var json = JsonConvert.SerializeObject(await db.GetBankAccountDetails(bankAccountId, householdId));
             return Ok(json);
         }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="ownerId">Id of Account Owner</param>
+        ///// <param name="accountType">Account Type</param>
+        ///// <param name="name">Name</param>
+        ///// <param name="startingBalance">Starting Balance</param>
+        ///// <param name="lowBalance">Low Balance Warning</param>
+        ///// <returns></returns>
+        //[Route("AddBankAccount")]
+        //public async Task<BankAccount> AddBankAccount(string ownerId, AccountType accountType, string name, float startingBalance, float lowBalance)
+        //{
+        //    return db.AddBankAccount(ownerId, accountType, name, startingBalance, lowBalance);
+        //}
     }
 }

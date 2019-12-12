@@ -17,9 +17,8 @@ namespace FP_Phase2.Controllers
     public class TransactionsController : BaseController
     {
         /// <summary>
-        /// 
+        /// Gets details for all transactions
         /// </summary>
-        /// <param name="id">Transaction Id</param>
         /// <returns></returns>
         [Route("GetAllTransactions")]
         public async Task<IHttpActionResult> GetAllTransactions()
@@ -29,16 +28,28 @@ namespace FP_Phase2.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get details for transactions of a specific bank account
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="amount"></param>
-        /// <param name="memo"></param>
         /// <returns></returns>
-        [Route("TransactionDetails")]
-        public async Task<Transaction> GetTransactionDetails(int id, float amount, string memo)
+        [Route("GetTransactionsByBankAccount")]
+        public async Task<IHttpActionResult> GetTransactionsByBankAccount(int id)
         {
-            return await db.GetTransactionDetails(id, amount, memo);
+            var transactions = await db.GetTransactionsByBankAccount(id);
+            return Json(transactions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+        }
+
+        /// <summary>
+        /// Gets details for a specific transaction
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="bId"></param>
+        /// <returns></returns>
+        [Route("GetTransactionDetails")]
+        public async Task<IHttpActionResult> GetTransactionDetails(int id, int bId)
+        {
+            var transactions = await db.GetTransactionDetails(id, bId);
+            return Json(transactions, new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         //[Route("Transactions")]

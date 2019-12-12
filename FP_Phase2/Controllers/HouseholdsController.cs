@@ -17,36 +17,38 @@ namespace FP_Phase2.Controllers
     public class HouseholdsController : BaseController
     {
         /// <summary>
-        /// 
+        /// Gets details for all households
         /// </summary>
         /// <returns></returns>
         [Route("GetAllHouseholdData")]
         public async Task<List<Household>> GetAllHouseholdData()
         {
+            //var households = await db.GetAllHouseholdData();
+            //return Json(households, new JsonSerializerSettings { Formatting = Formatting.Indented });
             return await db.GetAllHouseholdData();
         }
 
         /// <summary>
-        /// 
+        /// Gets details for all households as Json
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("GetAllHouseholdDataAsJson")]
         public async Task<IHttpActionResult> GetAllHouseholdDataAsJson(int id)
         {
-            var data = await db.GetHouseholdDetails(id);
+            var data = await db.GetHousehold(id);
             return Json(data, new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>
-        /// 
+        /// Gets details for a specific household
         /// </summary>
         /// <param name="id">Household Id</param>
         /// <returns></returns>
-        [Route("GetHouseholdDetails")]
-        public async Task<Household> GetHouseholdDetails(int id)
+        [Route("GetHousehold")]
+        public async Task<Household> GetHousehold(int id)
         {
-            return await db.GetHouseholdDetails(id);
+            return await db.GetHousehold(id);
         }
 
         /// <summary>
@@ -57,17 +59,17 @@ namespace FP_Phase2.Controllers
         [Route("GetHouseholdAsJson")]
         public async Task<IHttpActionResult> GetHouseholdAsJson(int id)
         {
-            var data = await db.GetHouseholdDetails(id);
+            var data = await db.GetHousehold(id);
             return Json(data, new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>
-        /// 
+        /// Adds a household into the database
         /// </summary>
         /// <param name="name"></param>
         /// <param name="greeting"></param>
         /// <returns></returns>
-        [HttpGet, Route("AddHousehold")]
+        [HttpPost, Route("AddHousehold")]
         public IHttpActionResult AddHousehold(string name, string greeting)
         {
             return Ok(db.AddHousehold(name, greeting));
