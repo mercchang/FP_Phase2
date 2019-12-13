@@ -54,12 +54,12 @@ namespace FP_Phase2.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Add a new Household
         /// </summary>
         /// <param name="name"></param>
         /// <param name="greeting"></param>
         /// <returns></returns>
-        public int AddHousehold(string name, string greeting)
+        public async Task<int> AddHousehold(string name, string greeting)
         {
             return Database.ExecuteSqlCommand("AddHousehold @name, @greeting",
                 new SqlParameter("name", name),
@@ -92,19 +92,21 @@ namespace FP_Phase2.Controllers
         }
 
         /// <summary>
-        /// Add New Bank Account
+        /// Add a new bank account to a household
         /// </summary>
-        /// <param name="ownerId"></param>
-        /// <param name="accountType"></param>
-        /// <param name="name"></param>
-        /// <param name="startingBalance"></param>
-        /// <param name="lowBalance"></param>
+        /// <param name="householdId">Household Id</param>
+        /// <param name="ownerId">Owner Id</param>
+        /// <param name="accountType">Account Type</param>
+        /// <param name="name">Name of Account</param>
+        /// <param name="startingBalance">Starting Balance</param>
+        /// <param name="lowBalance">Low Balance Warning</param>
         /// <returns></returns>
-        public int AddBankAccount(string ownerId, AccountType accountType, string name, float startingBalance, float lowBalance)
+        public int AddBankAccount(int householdId, string ownerId, AccountType accountType, string name, float startingBalance, float lowBalance)
         {
             var accountTypeValue = (int)accountType;
 
-            return Database.ExecuteSqlCommand("AddBankAccount @ownerId, @accountType, @name, @startingBalance, @lowBalance",
+            return Database.ExecuteSqlCommand("AddBankAccount @householdId, @ownerId, @accountType, @name, @startingBalance, @lowBalance",
+                new SqlParameter("householdId", householdId),
                 new SqlParameter("ownerId", ownerId),
                 new SqlParameter("accountType", accountType),
                 new SqlParameter("name", name),
@@ -122,6 +124,11 @@ namespace FP_Phase2.Controllers
             return await Database.SqlQuery<Transaction>("GetAllTransactions").ToListAsync();
         }
 
+        /// <summary>
+        /// Get transactions for a specific bank account
+        /// </summary>
+        /// <param name="id">Bank Account Id</param>
+        /// <returns></returns>
         public async Task<List<Transaction>> GetTransactionsByBankAccount(int id)
         {
             return await Database.SqlQuery<Transaction>("GetTransactionsByBankAccount @id",

@@ -59,26 +59,28 @@ namespace FP_Phase2.Controllers
         /// <param name="bankAccountId"></param>
         /// <param name="householdId"></param>
         /// <returns></returns>
-        [Route("BankAccountDetails/json")]
+        [Route("GetBankAccountDetails/json")]
         public async Task<IHttpActionResult> GetBankAccountDetailsJson(int bankAccountId, int householdId)
         {
             var json = JsonConvert.SerializeObject(await db.GetBankAccountDetails(bankAccountId, householdId));
             return Ok(json);
         }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="ownerId">Id of Account Owner</param>
-        ///// <param name="accountType">Account Type</param>
-        ///// <param name="name">Name</param>
-        ///// <param name="startingBalance">Starting Balance</param>
-        ///// <param name="lowBalance">Low Balance Warning</param>
-        ///// <returns></returns>
-        //[Route("AddBankAccount")]
-        //public async Task<BankAccount> AddBankAccount(string ownerId, AccountType accountType, string name, float startingBalance, float lowBalance)
-        //{
-        //    return db.AddBankAccount(ownerId, accountType, name, startingBalance, lowBalance);
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="householdId">Household Id</param>
+        /// <param name="ownerId">Id of Account Owner</param>
+        /// <param name="accountType">Account Type</param>
+        /// <param name="name">Name</param>
+        /// <param name="startingBalance">Starting Balance</param>
+        /// <param name="lowBalance">Low Balance Warning</param>
+        /// <returns></returns>
+        [HttpPost, Route("AddBankAccount")]
+        public IHttpActionResult AddBankAccount(int householdId, string ownerId, AccountType accountType, string name, float startingBalance, float lowBalance)
+        {
+            return Ok(db.AddBankAccount(householdId, ownerId, accountType, name, startingBalance, lowBalance));
+        }
+
     }
 }

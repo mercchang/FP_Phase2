@@ -33,11 +33,11 @@ namespace FP_Phase2.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("GetAllHouseholdDataAsJson")]
-        public async Task<IHttpActionResult> GetAllHouseholdDataAsJson(int id)
+        [Route("GetAllHouseholdData/Json")]
+        public async Task<IHttpActionResult> GetAllHouseholdDataAsJson()
         {
-            var data = await db.GetHousehold(id);
-            return Json(data, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            var data = JsonConvert.SerializeObject(await db.GetAllHouseholdData());
+            return Ok(data);
         }
 
         /// <summary>
@@ -56,11 +56,11 @@ namespace FP_Phase2.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("GetHouseholdAsJson")]
+        [Route("GetHousehold/Json")]
         public async Task<IHttpActionResult> GetHouseholdAsJson(int id)
         {
-            var data = await db.GetHousehold(id);
-            return Json(data, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            var data = JsonConvert.SerializeObject(await db.GetHousehold(id));
+            return Ok(data);
         }
 
         /// <summary>
