@@ -100,3 +100,26 @@ color: white;
     text-decoration: none;
     color: #000;
 }
+
+
+/*Help Page*/
+.help-page h2, .help-page .h2 {
+    color: white;
+}
+
+.p {
+    color: white;
+}
+
+.help-page a {
+    color: white;
+}
+
+.help-page-table th {
+    color: white;
+}
+
+.help-page-table pre, .help-page-table p {
+    color: white;
+}
+

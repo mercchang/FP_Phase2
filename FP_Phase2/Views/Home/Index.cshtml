@@ -1,28 +1,79 @@
-﻿<div class="row pt-5">
-    <div class="col-8 mx-5">
-        <div class="row">
-            <div class="fade"></div>
-            <section class="star-wars">
-                <div class="crawl">
-                    <div class="title">
-                        <p>Project IV</p>
-                        <h1>A New API</h1>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon.ico">
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <div class="navbar navbar-inverse navbar-fixed-top text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="navbar-header">
+                        <p class="navbar-brand" style="color: #9d9d9d">Financial Portal API</p>
                     </div>
-
-                    <p>A Web API is used for accessing data from multiple platforms.</p>
-                    <p>Over the past few weeks I've created a Financial Portal web page.</p>
-                    <p>The API for the financial portal works the same way as the ASP.NET web page but instead of returning an HTML view, it only sends the data in the form of json or xml.</p>
-                    <br />
-                    <p>This is my web API for my Financial Portal Project...</p>
-
                 </div>
-            </section>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                @*<img class="img-responsive fix center" src="~/Images/xwing.png" style="display: block; margin-left: auto; margin-right: auto;" />*@
+                <div class="col">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Swagger API", "Index", "Swagger", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("API Help", "Index", "Help", new { area = "" }, null)</li>
+                        <li><a href="https://khumorchang.azurewebsites.net/">Back to My Portfolio</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="container body-content pt-5">
+        <div class="row pt-5">
+            <div class="col-8 mx-5">
+                <div class="row">
+                    <div class="fade"></div>
+                    <section class="star-wars">
+                        <div class="crawl">
+                            <div class="title">
+                                <p style="color: #feda4a">Project IV</p>
+                                <h1 style="color: #feda4a">A New API</h1>
+                            </div>
+
+                            <p style="color: #feda4a">A Web API is used for accessing data from multiple platforms.</p>
+                            <p style="color: #feda4a">Over the past few weeks I've created a Financial Portal web page.</p>
+                            <p style="color: #feda4a">The API for the financial portal works the same way as the ASP.NET web page but instead of returning an HTML view, it only sends the data in the form of json or xml.</p>
+                            <br />
+                            <p style="color: #feda4a">This is my web API for my Financial Portal Project...</p>
+
+                        </div>
+                    </section>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        @*<img class="img-responsive fix center" src="~/Images/xwing.png" style="display: block; margin-left: auto; margin-right: auto;" />*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
+

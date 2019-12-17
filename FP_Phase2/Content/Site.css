@@ -6,7 +6,8 @@
 
 #myCanvas {
     background-color: #101010;
-    position: absolute;
+    /*position: absolute;*/
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -1000;
@@ -110,3 +111,33 @@ textarea {
     }
 }
 
+/*Help Page*/
+.help-page h2, .help-page .h2 {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+.help-page a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    .help-page a:hover {
+        background-color: transparent;
+        color: white;
+    }
+
+.help-page-table th {
+    color: white;
+}
+
+.help-page-table pre, .help-page-table p {
+    color: white;
+}
+
+* {
+    color: white;
+}
