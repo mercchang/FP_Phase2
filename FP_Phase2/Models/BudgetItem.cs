@@ -14,7 +14,7 @@ namespace FP_Phase2.Models
         public float TargetAmount { get; set; }
         public float CurrentAmount { get; set; }
 
-        public virtual Budget Budget { get; set; }
+        //public virtual Budget Budget { get; set; }
 
         //public virtual ICollection<Transaction> Transactions { get; set; }
 

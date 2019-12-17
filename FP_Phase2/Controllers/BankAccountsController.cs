@@ -13,13 +13,13 @@ using System.Web.Http;
 namespace FP_Phase2.Controllers
 {
     /// <summary>
-    /// 
+    /// Create/Details for Bank Accounts
     /// </summary>
     [RoutePrefix("Api/BankAccounts")]
     public class BankAccountsController : BaseController
     {
         /// <summary>
-        /// 
+        /// Gets details for all bank accounts belonging to a household
         /// </summary>
         /// <param name="householdId"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace FP_Phase2.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Gets details for all bank accounts belonging to a household, as JSON
         /// </summary>
         /// <param name="householdId"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ namespace FP_Phase2.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Gets details for a specific bank account
         /// </summary>
         /// <param name="bankAccountId">Bank Account Id</param>
         /// <param name="householdId">Household Id</param>
@@ -54,7 +54,7 @@ namespace FP_Phase2.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Gets details for a bank account as JSON
         /// </summary>
         /// <param name="bankAccountId"></param>
         /// <param name="householdId"></param>
@@ -67,7 +67,7 @@ namespace FP_Phase2.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Add a new Bank Account
         /// </summary>
         /// <param name="householdId">Household Id</param>
         /// <param name="ownerId">Id of Account Owner</param>

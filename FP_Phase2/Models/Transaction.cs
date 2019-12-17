@@ -17,8 +17,8 @@ namespace FP_Phase2.Models
         public float Amount { get; set; }
         public string Memo { get; set; }
 
-        public virtual BankAccount BankAccount { get; set; }
-        public virtual BudgetItem BudgetItem { get; set; }
-        public virtual ApplicationUser Owner { get; set; }
+        //public virtual BankAccount BankAccount { get; set; }
+        //public virtual BudgetItem BudgetItem { get; set; }
+        //public virtual ApplicationUser Owner { get; set; }
     }
 }

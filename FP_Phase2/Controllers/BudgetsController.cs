@@ -46,6 +46,20 @@ namespace FP_Phase2.Controllers
             return await db.GetAllBudgets();
         }
 
+        /// <summary>
+        /// Add new Budget to a household.
+        /// </summary>
+        /// <param name="hhId">Household Id</param>
+        /// <param name="ownerId">Owner Id</param>
+        /// <param name="name">Name of Budget</param>
+        /// <param name="targetAmount">Target Amount</param>
+        /// <returns></returns>
+        [HttpPost, Route("AddBudget")]
+        public IHttpActionResult AddBudget(int hhId, string ownerId, string name, float targetAmount)
+        {
+            return Ok(db.AddBudget(hhId, ownerId, name, targetAmount));
+        }
+
 
     }
 }

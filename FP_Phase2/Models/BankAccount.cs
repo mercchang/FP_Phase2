@@ -54,23 +54,23 @@ namespace FP_Phase2.Models
         /// <summary>
         /// 
         /// </summary>
-        public virtual Household Household { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual ApplicationUser Owner { get; set; }
+        //public virtual Household Household { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public virtual ApplicationUser Owner { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual ICollection<Transaction> Transactions { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public virtual ICollection<Transaction> Transactions { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public BankAccount()
-        {
-            Transactions = new HashSet<Transaction>();
-        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public BankAccount()
+        //{
+        //    Transactions = new HashSet<Transaction>();
+        //}
     }
 }

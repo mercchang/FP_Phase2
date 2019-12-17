@@ -15,17 +15,17 @@ namespace FP_Phase2.Models
         public float TargetAmount { get; set; }
         public float CurrentAmount { get; set; }
 
-        public virtual Household Household { get; set; }
-        public virtual ApplicationUser Owner { get; set; }
+        //public virtual Household Household { get; set; }
+        //public virtual ApplicationUser Owner { get; set; }
 
-        public virtual ICollection<BudgetItem> BudgetItems { get; set; }
-        public virtual ICollection<Transaction> Transactions { get; set; }
+        //public virtual ICollection<BudgetItem> BudgetItems { get; set; }
+        //public virtual ICollection<Transaction> Transactions { get; set; }
 
-        //constructor
-        public Budget()
-        {
-            BudgetItems = new HashSet<BudgetItem>();
-            Transactions = new HashSet<Transaction>();
-        }
+        ////constructor
+        //public Budget()
+        //{
+        //    BudgetItems = new HashSet<BudgetItem>();
+        //    Transactions = new HashSet<Transaction>();
+        //}
     }
 }

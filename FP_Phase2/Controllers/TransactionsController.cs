@@ -1,4 +1,5 @@
-﻿using FP_Phase2.Models;
+﻿using FP_Phase2.Enums;
+using FP_Phase2.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -52,10 +53,21 @@ namespace FP_Phase2.Controllers
             return Json(transactions, new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
-        //[Route("Transactions")]
-        //public async Task<List<Transaction>> GetTransactions(int bankAccountId, int householdId)
-        //{
-        //    return await db.GetTransactions(bankAccountId, householdId);
-        //}
+        /// <summary>
+        /// Add new transaction to a budget item.
+        /// </summary>
+        /// <param name="bankId">Bank Account Id</param>
+        /// <param name="budgetItemId">Budget Item Id</param>
+        /// <param name="ownerId">Owner Id</param>
+        /// <param name="memo">Memo</param>
+        /// <param name="transactionType">Transaction Type</param>
+        /// <param name="amount">Amount</param>
+        /// <returns></returns>
+        [HttpPost, Route("AddTransaction")]
+        public IHttpActionResult AddTransaction(int bankId, int budgetItemId, string ownerId, string memo, TransactionType transactionType, float amount)
+        {
+            return Ok(db.AddTransaction(bankId, budgetItemId, ownerId, memo, transactionType, amount));
+        }
+
     }
 }

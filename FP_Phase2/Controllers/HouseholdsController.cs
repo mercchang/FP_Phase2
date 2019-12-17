@@ -52,7 +52,7 @@ namespace FP_Phase2.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Gets details for a household as JSON
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

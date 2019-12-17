@@ -148,6 +148,29 @@ namespace FP_Phase2.Controllers
                 new SqlParameter("bId", bId)).FirstOrDefaultAsync();
         }
 
+        /// <summary>
+        /// Add a new Transaction
+        /// </summary>
+        /// <param name="bankId"></param>
+        /// <param name="budgetItemId"></param>
+        /// <param name="ownerId"></param>
+        /// <param name="memo"></param>
+        /// <param name="transactionType"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public async Task<int> AddTransaction(int bankId, int budgetItemId, string ownerId, string memo, TransactionType transactionType, float amount)
+        {
+            var transactionTypeValue = (int)transactionType;
+
+            return Database.ExecuteSqlCommand("AddTransaction @bankId, @budgetItemId, @ownerId, @memo, @transactionType, @amount",
+                new SqlParameter("bankId", bankId),
+                new SqlParameter("budgetItemId", budgetItemId),
+                new SqlParameter("ownerId", ownerId),
+                new SqlParameter("memo", memo),
+                new SqlParameter("transactionType", transactionType),
+                new SqlParameter("amount", amount));
+        }
+
         //SQL get budgets==========================================================
         /// <summary>
         /// 
@@ -178,6 +201,23 @@ namespace FP_Phase2.Controllers
         {
             return await Database.SqlQuery<Budget>("GetBudgetsByHousehold @id",
                 new SqlParameter("id", id)).ToListAsync();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hhId">Household Id</param>
+        /// <param name="ownerId">Owner Id</param>
+        /// <param name="name">Name of Budget</param>
+        /// <param name="targetAmount">Target Amount</param>
+        /// <returns></returns>
+        public async Task<int> AddBudget(int hhId, string ownerId, string name, float targetAmount)
+        {
+            return Database.ExecuteSqlCommand("AddBudget @hhId, @ownerId, @name, @targetAmount",
+                new SqlParameter("hhId", hhId),
+                new SqlParameter("ownerId", ownerId),
+                new SqlParameter("name", name),
+                new SqlParameter("targetAmount", targetAmount));
         }
 
         //SQL Get budget items=====================================================
