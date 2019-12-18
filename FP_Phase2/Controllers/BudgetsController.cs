@@ -17,7 +17,7 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Gets details for all budgets in a specific household
         /// </summary>
-        /// <param name="householdId">Household Id</param>
+        /// <param name="householdId">Household ID</param>
         /// <returns></returns>
         [Route("GetBudgetsByHousehold")]
         public async Task<List<Budget>> GetBudgetsByHousehold(int householdId)
@@ -28,7 +28,7 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Gets details for a specific budget
         /// </summary>
-        /// <param name="id">Budget Id</param>
+        /// <param name="id">Budget ID</param>
         /// <returns></returns>
         [Route("GetBudgetDetails")]
         public async Task<List<Budget>> GetBudgetDetails(int id)
@@ -49,8 +49,8 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Add new Budget to a household.
         /// </summary>
-        /// <param name="hhId">Household Id</param>
-        /// <param name="ownerId">Owner Id</param>
+        /// <param name="hhId">Household ID</param>
+        /// <param name="ownerId">Owner ID</param>
         /// <param name="name">Name of Budget</param>
         /// <param name="targetAmount">Target Amount</param>
         /// <returns></returns>

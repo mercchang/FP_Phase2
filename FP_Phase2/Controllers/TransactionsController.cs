@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace FP_Phase2.Controllers
 {
@@ -22,6 +23,7 @@ namespace FP_Phase2.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetAllTransactions")]
+        [ResponseType(typeof(List<Transaction>))]
         public async Task<IHttpActionResult> GetAllTransactions()
         {
             var transactions = await db.GetAllTransactions();
@@ -31,9 +33,10 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Get details for transactions of a specific bank account
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Bank Account ID</param>
         /// <returns></returns>
         [Route("GetTransactionsByBankAccount")]
+        [ResponseType(typeof(List<Transaction>))]
         public async Task<IHttpActionResult> GetTransactionsByBankAccount(int id)
         {
             var transactions = await db.GetTransactionsByBankAccount(id);
@@ -43,10 +46,11 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Gets details for a specific transaction
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="bId"></param>
+        /// <param name="id">Transaction ID</param>
+        /// <param name="bId">Bank Account ID</param>
         /// <returns></returns>
         [Route("GetTransactionDetails")]
+        [ResponseType(typeof(List<Transaction>))]
         public async Task<IHttpActionResult> GetTransactionDetails(int id, int bId)
         {
             var transactions = await db.GetTransactionDetails(id, bId);
@@ -56,14 +60,15 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Add new transaction to a budget item.
         /// </summary>
-        /// <param name="bankId">Bank Account Id</param>
-        /// <param name="budgetItemId">Budget Item Id</param>
-        /// <param name="ownerId">Owner Id</param>
+        /// <param name="bankId">Bank Account ID</param>
+        /// <param name="budgetItemId">Budget Item ID</param>
+        /// <param name="ownerId">Owner ID</param>
         /// <param name="memo">Memo</param>
         /// <param name="transactionType">Transaction Type</param>
         /// <param name="amount">Amount</param>
         /// <returns></returns>
         [HttpPost, Route("AddTransaction")]
+        [ResponseType(typeof(List<Transaction>))]
         public IHttpActionResult AddTransaction(int bankId, int budgetItemId, string ownerId, string memo, TransactionType transactionType, float amount)
         {
             return Ok(db.AddTransaction(bankId, budgetItemId, ownerId, memo, transactionType, amount));

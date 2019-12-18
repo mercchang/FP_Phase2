@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace FP_Phase2.Controllers
 {
@@ -21,7 +22,7 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Gets details for all bank accounts belonging to a household
         /// </summary>
-        /// <param name="householdId"></param>
+        /// <param name="householdId">ID for the Household</param>
         /// <returns></returns>
         [Route("GetBankAccounts")]
         public async Task<List<BankAccount>> GetBankAccounts(int householdId)
@@ -32,9 +33,10 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Gets details for all bank accounts belonging to a household, as JSON
         /// </summary>
-        /// <param name="householdId"></param>
+        /// <param name="householdId">ID for the Household</param>
         /// <returns></returns>
         [Route("BankAccounts/json")]
+        [ResponseType(typeof(List<BankAccount>))]
         public async Task<IHttpActionResult> GetBankAccountsJson(int householdId)
         {
             var json = JsonConvert.SerializeObject(await db.GetBankAccounts(householdId));
@@ -44,8 +46,8 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Gets details for a specific bank account
         /// </summary>
-        /// <param name="bankAccountId">Bank Account Id</param>
-        /// <param name="householdId">Household Id</param>
+        /// <param name="bankAccountId">Bank Account ID</param>
+        /// <param name="householdId">Household ID</param>
         /// <returns></returns>
         [Route("GetBankAccountDetails")]
         public async Task<BankAccount> GetBankAccountDetails(int bankAccountId, int householdId)
@@ -56,10 +58,11 @@ namespace FP_Phase2.Controllers
         /// <summary>
         /// Gets details for a bank account as JSON
         /// </summary>
-        /// <param name="bankAccountId"></param>
-        /// <param name="householdId"></param>
+        /// <param name="bankAccountId">Bank Account ID</param>
+        /// <param name="householdId">Household ID</param>
         /// <returns></returns>
         [Route("GetBankAccountDetails/json")]
+        [ResponseType(typeof(List<BankAccount>))]
         public async Task<IHttpActionResult> GetBankAccountDetailsJson(int bankAccountId, int householdId)
         {
             var json = JsonConvert.SerializeObject(await db.GetBankAccountDetails(bankAccountId, householdId));
@@ -72,7 +75,7 @@ namespace FP_Phase2.Controllers
         /// <param name="householdId">Household Id</param>
         /// <param name="ownerId">Id of Account Owner</param>
         /// <param name="accountType">Account Type</param>
-        /// <param name="name">Name</param>
+        /// <param name="name">Name of Bank Account</param>
         /// <param name="startingBalance">Starting Balance</param>
         /// <param name="lowBalance">Low Balance Warning</param>
         /// <returns></returns>
