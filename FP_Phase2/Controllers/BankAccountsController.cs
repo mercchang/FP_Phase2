@@ -80,10 +80,42 @@ namespace FP_Phase2.Controllers
         /// <param name="lowBalance">Low Balance Warning</param>
         /// <returns></returns>
         [HttpPost, Route("AddBankAccount")]
+        [ResponseType(typeof(List<BankAccount>))]
         public IHttpActionResult AddBankAccount(int householdId, string ownerId, AccountType accountType, string name, float startingBalance, float lowBalance)
         {
             return Ok(db.AddBankAccount(householdId, ownerId, accountType, name, startingBalance, lowBalance));
         }
 
+        /// <summary>
+        /// Edit Details for a Bank Account
+        /// </summary>
+        /// <param name="bankId">Bank Account ID</param>
+        /// <param name="householdId">Household ID</param>
+        /// <param name="ownerId">Owner ID</param>
+        /// <param name="accountType">Account Type</param>
+        /// <param name="name">Name of account</param>
+        /// <param name="startingBalance">Starting Balance</param>
+        /// <param name="currentBalance">Current Balance</param>
+        /// <param name="lowBalance">Low Balance Warning</param>
+        /// <returns></returns>
+        [HttpPut, Route("EditBankAccount")]
+        [ResponseType(typeof(List<BankAccount>))]
+        public IHttpActionResult EditBankAccount(int bankId, int householdId, string ownerId, AccountType accountType, string name, float startingBalance, float currentBalance, float lowBalance)
+        {
+            return Ok(db.EditBankAccount(bankId, householdId, ownerId, accountType, name, startingBalance, currentBalance, lowBalance));
+        }
+
+        /// <summary>
+        /// Delete a Bank Account from the database
+        /// </summary>
+        /// <param name="bankId">Bank Account ID</param>
+        /// <param name="hhId">ID of Household that the account belongs to</param>
+        /// <returns></returns>
+        [HttpDelete, Route("DeleteBankAccount")]
+        [ResponseType(typeof(List<BankAccount>))]
+        public IHttpActionResult DeleteBankAccount(int bankId, int hhId)
+        {
+            return Ok(db.DeleteBankAccount(bankId, hhId));
+        }
     }
 }

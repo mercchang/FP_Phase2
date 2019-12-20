@@ -74,5 +74,35 @@ namespace FP_Phase2.Controllers
             return Ok(db.AddTransaction(bankId, budgetItemId, ownerId, memo, transactionType, amount));
         }
 
+        /// <summary>
+        /// Edit a Transaction
+        /// </summary>
+        /// <param name="bankId">Bank account ID</param>
+        /// <param name="budgetItemId">Budget Item ID</param>
+        /// <param name="ownerId">Owner ID</param>
+        /// <param name="memo">Memo</param>
+        /// <param name="transactionType">Transaction Type</param>
+        /// <param name="amount">Amount</param>
+        /// <returns></returns>
+        [HttpPut, Route("EditTransaction")]
+        [ResponseType(typeof(List<Transaction>))]
+        public IHttpActionResult EditTransaction(int bankId, int budgetItemId, string ownerId, string memo, TransactionType transactionType, float amount)
+        {
+            return Ok(db.EditTransaction(bankId, budgetItemId, ownerId, memo, transactionType, amount));
+        }
+
+        /// <summary>
+        /// Delete a transaction
+        /// </summary>
+        /// <param name="bankId">Bank Account ID</param>
+        /// <param name="budgetItemId">Budget Item ID</param>
+        /// <param name="ownerId">Owner ID</param>
+        /// <returns></returns>
+        [HttpDelete, Route("DeleteTransaction")]
+        [ResponseType(typeof(List<Transaction>))]
+        public IHttpActionResult DeleteTransaction(int bankId, int budgetItemId, string ownerId)
+        {
+            return Ok(db.DeleteTransaction(bankId, budgetItemId, ownerId));
+        }
     }
 }

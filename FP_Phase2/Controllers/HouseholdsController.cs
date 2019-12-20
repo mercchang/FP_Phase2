@@ -72,10 +72,33 @@ namespace FP_Phase2.Controllers
         /// <param name="greeting">Greeting for the members</param>
         /// <returns></returns>
         [HttpPost, Route("AddHousehold")]
+        [ResponseType(typeof(List<Household>))]
         public IHttpActionResult AddHousehold(string name, string greeting)
         {
             return Ok(db.AddHousehold(name, greeting));
         }
 
+        /// <summary>
+        /// Edit details for a Household
+        /// </summary>
+        /// <param name="id">Household ID</param>
+        /// <returns></returns>
+        [HttpPut, Route("EditHousehold")]
+        public IHttpActionResult EditHousehold(int id, string name, string greeting)
+        {
+            return Ok(db.EditHousehold(id, name, greeting));
+        }
+
+
+        /// <summary>
+        /// Deletes a household from the database
+        /// </summary>
+        /// <param name="id">Household ID</param>
+        /// <returns></returns>
+        [HttpDelete, Route("DeleteHousehold")]
+        public IHttpActionResult DeleteHousehold(int id)
+        {
+            return Ok(db.DeleteHousehold(id));
+        }
     }
 }

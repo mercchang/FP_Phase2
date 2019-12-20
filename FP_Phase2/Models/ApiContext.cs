@@ -66,6 +66,32 @@ namespace FP_Phase2.Controllers
                 new SqlParameter("greeting", greeting));
         }
 
+        /// <summary>
+        /// Edit details for a household.
+        /// </summary>
+        /// <param name="id">Household ID</param>
+        /// <param name="name">Household Name</param>
+        /// <param name="greeting">Household Greeting</param>
+        /// <returns></returns>
+        public int EditHousehold(int id, string name, string greeting)
+        {
+            return Database.ExecuteSqlCommand("EditHousehold @id, @name, @greeting",
+                new SqlParameter("id", id),
+                new SqlParameter("name", name),
+                new SqlParameter("greeting", greeting));
+        }
+
+        /// <summary>
+        /// Deletes a household from the database
+        /// </summary>
+        /// <param name="id">Household ID</param>
+        /// <returns></returns>
+        public int DeleteHousehold(int id)
+        {
+            return Database.ExecuteSqlCommand("DeleteHousehold @id",
+                new SqlParameter("id", id));
+        }
+
         //SQL Get Accounts==========================================================
         /// <summary>
         /// Gets Details for all Bank Accounts of Specific Household
@@ -112,6 +138,46 @@ namespace FP_Phase2.Controllers
                 new SqlParameter("name", name),
                 new SqlParameter("startingBalance", startingBalance),
                 new SqlParameter("lowBalance", lowBalance));
+        }
+
+        /// <summary>
+        /// Edit details for a bank account
+        /// </summary>
+        /// <param name="bankId">Bank Account ID</param>
+        /// <param name="householdId">Household ID</param>
+        /// <param name="ownerId">Owner ID</param>
+        /// <param name="accountType">Account Type</param>
+        /// <param name="name">Name of Account</param>
+        /// <param name="startingBalance">Starting Balance</param>
+        /// <param name="currentBalance">Current Balance</param>
+        /// <param name="lowBalance">Low Balance Warning</param>
+        /// <returns></returns>
+        public int EditBankAccount(int bankId, int householdId, string ownerId, AccountType accountType, string name, float startingBalance, float currentBalance, float lowBalance)
+        {
+            var accountTypeValue = (int)accountType;
+
+            return Database.ExecuteSqlCommand("EditBankAccount @bankId, @householdId, @ownerId, @accountType, @name, @startingBalance, @currentBalance, @lowBalance",
+                new SqlParameter("bankId", bankId),
+                new SqlParameter("householdId", householdId),
+                new SqlParameter("ownerId", ownerId),
+                new SqlParameter("accountType", accountType),
+                new SqlParameter("name", name),
+                new SqlParameter("startingBalance", startingBalance),
+                new SqlParameter("currentBalance", currentBalance),
+                new SqlParameter("lowBalance", lowBalance));
+        }
+
+        /// <summary>
+        /// Delete a Bank Account from the database
+        /// </summary>
+        /// <param name="bankId">Bank Account ID</param>
+        /// <param name="hhId">Household ID</param>
+        /// <returns></returns>
+        public int DeleteBankAccount(int bankId, int hhId)
+        {
+            return Database.ExecuteSqlCommand("DeleteBankAccount @bankId, @hhId",
+                new SqlParameter("bankId", bankId),
+                new SqlParameter("hhId", hhId));
         }
 
         //SQL get transactions====================================================
@@ -171,6 +237,44 @@ namespace FP_Phase2.Controllers
                 new SqlParameter("amount", amount));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bankId"></param>
+        /// <param name="budgetItemId"></param>
+        /// <param name="ownerId"></param>
+        /// <param name="memo"></param>
+        /// <param name="transactionType"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        public int EditTransaction(int bankId, int budgetItemId, string ownerId, string memo, TransactionType transactionType, float amount)
+        {
+            var transactionTypeValue = (int)transactionType;
+
+            return Database.ExecuteSqlCommand("EditTransaction @bankId, @budgetItemId, @ownerId, @memo, @transactionType, @amount",
+                new SqlParameter("bankId", bankId),
+                new SqlParameter("budgetItemId", budgetItemId),
+                new SqlParameter("ownerId", ownerId),
+                new SqlParameter("memo", memo),
+                new SqlParameter("transactionType", transactionType),
+                new SqlParameter("amount", amount));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bankId"></param>
+        /// <param name="budgetItemId"></param>
+        /// <param name="ownerId"></param>
+        /// <returns></returns>
+        public int DeleteTransaction(int bankId, int budgetItemId, string ownerId)
+        {
+            return Database.ExecuteSqlCommand("DeleteTransaction @bankId, @budgetItemId, @ownerId",
+                new SqlParameter("bankId", bankId),
+                new SqlParameter("budgetItemId", budgetItemId),
+                new SqlParameter("ownerId", ownerId));
+        }
+
         //SQL get budgets==========================================================
         /// <summary>
         /// 
@@ -220,6 +324,39 @@ namespace FP_Phase2.Controllers
                 new SqlParameter("targetAmount", targetAmount));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="budgetId"></param>
+        /// <param name="hhId"></param>
+        /// <param name="ownerId"></param>
+        /// <param name="name"></param>
+        /// <param name="targetAmount"></param>
+        /// <returns></returns>
+        public int EditBudget(int budgetId, int hhId, string ownerId, string name, float targetAmount)
+        {
+            return Database.ExecuteSqlCommand("EditBudget @budgetId, @hhId, @ownerId, @name, @targetAmount",
+                new SqlParameter("budgetId", budgetId),
+                new SqlParameter("hhId", hhId),
+                new SqlParameter("ownerId", ownerId),
+                new SqlParameter("name", name),
+                new SqlParameter("targetAmount", targetAmount));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="budgetId"></param>
+        /// <param name="hhId"></param>
+        /// <returns></returns>
+        public int DeleteBudget(int budgetId, int hhId)
+        {
+            return Database.ExecuteSqlCommand("DeleteBudget @budgetId, @hhId",
+                new SqlParameter("budgetId", budgetId),
+                new SqlParameter("hhId", hhId));
+        }
+
+
         //SQL Get budget items=====================================================
         /// <summary>
         /// Gets Details for all Budget Items
@@ -251,5 +388,55 @@ namespace FP_Phase2.Controllers
             return await Database.SqlQuery<Budget>("GetBudgetItemDetails @id",
                 new SqlParameter("id", id)).ToListAsync();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="budgetId"></param>
+        /// <param name="name"></param>
+        /// <param name="targetAmount"></param>
+        /// <param name="currentAmount"></param>
+        /// <returns></returns>
+        public int AddBudgetItem(int budgetId, string name, float targetAmount, float currentAmount)
+        {
+            return Database.ExecuteSqlCommand("AddBudgetItem @budgetId, @name, @targetAmount, @currentAmount",
+                new SqlParameter("budgetId", budgetId),
+                new SqlParameter("name", name),
+                new SqlParameter("targetAmount", targetAmount),
+                new SqlParameter("currentAmount", currentAmount));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="budgetId"></param>
+        /// <param name="budgetItemId"></param>
+        /// <param name="name"></param>
+        /// <param name="targetAmount"></param>
+        /// <param name="currentAmount"></param>
+        /// <returns></returns>
+        public int EditBudgetItem(int budgetId, int budgetItemId, string name, float targetAmount, float currentAmount)
+        {
+            return Database.ExecuteSqlCommand("EditBudgetItem @budgetId, @budgetItemId, @name, @targetAmount, @currentAmount",
+                new SqlParameter("budgetId", budgetId),
+                new SqlParameter("budgetItemId", budgetItemId),
+                new SqlParameter("name", name),
+                new SqlParameter("targetAmount", targetAmount),
+                new SqlParameter("currentAmount", currentAmount));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="budgetId"></param>
+        /// <param name="budgetItemId"></param>
+        /// <returns></returns>
+        public int DeleteBudgetItem(int budgetId, int budgetItemId)
+        {
+            return Database.ExecuteSqlCommand("DeleteBudgetItem @budgetId, @budgetItemId",
+                new SqlParameter("budgetId", budgetId),
+                new SqlParameter("budgetItemId", budgetItemId));
+        }
+
     }
 }
